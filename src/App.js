@@ -15,10 +15,9 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import ProductLists from "./Components/ProductLists";
-import history from './history';
 
 const promise = loadStripe(
-  "pk_test_51HW2EnCRlwJlGJf5BiIJFw2qFX6UimCYXHFiRLTb9Qa8Vc6pQIK3AWUrWrOcfWtFjRPXJ57vzjyZ1M1xYIyF16YL00sj5Exqv4"
+  "pk_test_51KOQduSGmnjRVw8zzEqsZnar3q8fR32rfk8d5xEDXIWLx4Z49j1tlBJja3kaEw1vR5gkU3bvClSE9333Sg72xIyJ00N0sU6nS1"
 );
 
 function App() {
@@ -66,7 +65,7 @@ function App() {
   return (
     // BEM
 
-    <Router history={history}>
+    <Router>
       <div className="app">
         <Header />
         <Routes>

@@ -4,7 +4,7 @@ import { useStateValue } from "../States/StateProvider";
 
 function Product({ productList, id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
-
+  const x = 0;
   const addToBasket = () => {
     //dispatch the item into the data layer
     dispatch({
@@ -31,7 +31,7 @@ function Product({ productList, id, title, image, price, rating }) {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <p>⭐</p>
+              <p key={i}>⭐</p>
             ))}
         </div>
       </div>

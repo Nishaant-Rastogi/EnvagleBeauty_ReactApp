@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../States/firebase";
 import FooterLogin from "./FooterLogin";
 import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from "firebase/auth";
-import history from '../history';
 
 function Login() {
   const [email, setEmail] = useState("");
+  const history = useNavigate();
   const [password, setPassword] = useState("");
 
   const signIn = (e) => {
@@ -20,7 +20,7 @@ function Login() {
     // ...
   })
   .then((auth) => {
-    history.push("/");
+    history("/");
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -29,7 +29,7 @@ function Login() {
 
     signInWithEmailAndPassword(auth,email, password)
       .then((auth) => {
-        history.push("/");
+        history("/");
       })
       .catch((error) => alert(error.message));
   };
@@ -41,7 +41,7 @@ function Login() {
         //It successfully created a new user with email and password
         console.log(auth);
         if (auth) {
-          history.push("/");
+          history("/");
         }
       })
       .catch((error) => alert(error.message));

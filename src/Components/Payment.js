@@ -70,7 +70,7 @@ function Payment() {
           type: "EMPTY_BASKET",
         });
 
-        history.replace("/orders");
+        history("/orders",{replace: true});
       });
   };
 
