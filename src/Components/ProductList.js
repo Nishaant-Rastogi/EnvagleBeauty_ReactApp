@@ -1,11 +1,23 @@
 import React from "react";
-import "../Styles/Product.css";
+import "../Styles/ProductList.css";
+import {
+  Card,
+  CardActions,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+} from "@material-ui/core";
 import { useStateValue } from "../States/StateProvider";
 
-function Product({ productList, id, title, image, price, rating }) {
+function ProductList({
+  productList: { id, title, price, description, category, image, rating },
+  i,
+}) {
   const [{ basket }, dispatch] = useStateValue();
 
-  const addToBasket = () => {
+  const addToBasket = ({ productList, id, title, image, price, rating }) => {
     //dispatch the item into the data layer
     dispatch({
       type: "ADD_TO_BASKET",
@@ -18,7 +30,6 @@ function Product({ productList, id, title, image, price, rating }) {
       },
     });
   };
-
   return (
     <div className="product">
       <div className="product_info">
@@ -37,10 +48,9 @@ function Product({ productList, id, title, image, price, rating }) {
       </div>
       <img src={image} alt="" />
       <button onClick={addToBasket}>Add to Basket</button>
-
-      <div></div>
+      {/* <button onClick={addToBasket}>Add to Basket</button> */}
     </div>
   );
 }
 
-export default Product;
+export default ProductList;
