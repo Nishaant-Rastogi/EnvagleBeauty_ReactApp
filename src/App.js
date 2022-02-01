@@ -15,6 +15,7 @@ import Footer from "./Components/Footer";
 import Register from "./Components/Register";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import ProductLists from "./Components/ProductLists";
+import history from './history';
 
 const promise = loadStripe(
   "pk_test_51HW2EnCRlwJlGJf5BiIJFw2qFX6UimCYXHFiRLTb9Qa8Vc6pQIK3AWUrWrOcfWtFjRPXJ57vzjyZ1M1xYIyF16YL00sj5Exqv4"
@@ -65,7 +66,7 @@ function App() {
   return (
     // BEM
 
-    <Router>
+    <Router history={history}>
       <div className="app">
         <Header />
         <Routes>

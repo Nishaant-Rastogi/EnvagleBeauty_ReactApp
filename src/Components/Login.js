@@ -4,17 +4,30 @@ import '../Styles/Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../States/firebase";
 import FooterLogin from "./FooterLogin";
+import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from "firebase/auth";
+import history from '../history';
 
 function Login() {
-  const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const signIn = (e) => {
     e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .then((auth) => {
+    history.push("/");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
 
-    auth
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth,email, password)
       .then((auth) => {
         history.push("/");
       })
@@ -23,9 +36,7 @@ function Login() {
 
   const register = (e) => {
     e.preventDefault();
-
-    auth
-      .createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth,email, password)
       .then((auth) => {
         //It successfully created a new user with email and password
         console.log(auth);

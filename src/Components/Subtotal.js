@@ -4,9 +4,9 @@ import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../States/StateProvider";
 import { getBasketTotal } from "../States/Reducer";
 import { useNavigate } from "react-router-dom";
+import history from "../history";
 
 function Subtotal() {
-  const history = useNavigate();
   const [{ basket }, dispatch] = useStateValue();
 
   return (

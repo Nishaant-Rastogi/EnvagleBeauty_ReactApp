@@ -3,9 +3,12 @@ import "../Styles/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../States/firebase";
 import FooterLogin from "./FooterLogin";
+import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from "firebase/auth";
+import history from "../history";
+
+
 function Register() {
   //programatically chnage URL
-  const history = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,8 +27,8 @@ function Register() {
   const register = (e) => {
     e.preventDefault();
 
-    auth
-      .createUserWithEmailAndPassword(email, password)
+    
+    createUserWithEmailAndPassword(auth,email, password)
       .then((auth) => {
         //It successfully created a new user with email and password
         console.log(auth);
