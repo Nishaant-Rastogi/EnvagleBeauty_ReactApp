@@ -68,7 +68,7 @@ function App() {
 
     <Router>
       <div className="app">
-        <Switch>
+        <Routes>
           <Route path="/orders">
             <Header />
             <Orders />
@@ -102,7 +102,7 @@ function App() {
             <Home />
             <Footer />
           </Route>
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
