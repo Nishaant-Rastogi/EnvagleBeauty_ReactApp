@@ -13,7 +13,6 @@ import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Components/Orders";
 import Footer from "./Components/Footer";
 import Register from "./Components/Register";
-import FooterLogin from "./Components/FooterLogin";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import ProductLists from "./Components/ProductLists";
 
@@ -23,7 +22,7 @@ const promise = loadStripe(
 
 function App() {
   //contect API
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
   const [allProductList, setAllProductList] = useState([]);
 
   useEffect(() => {
@@ -68,41 +67,21 @@ function App() {
 
     <Router>
       <div className="app">
+        <Header />
         <Routes>
-          <Route path="/orders">
-            <Header />
-            <Orders />
-            <Footer />
-          </Route>
-          <Route path="/login">
-            <Login />
-            <FooterLogin />
-          </Route>
-          <Route path="/register">
-            <Register />
-            <FooterLogin />
-          </Route>
-          <Route path="/checkout">
-            <Header />
-            <Checkout />
-          </Route>
-          <Route path="/payment">
-            <Header />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={
             <Elements stripe={promise}>
               <Payment />
-            </Elements>
-          </Route>
-          <Route path="/product">
-            <Header />
-            <ProductLists productLists={allProductList} />
-            <Footer />
-          </Route>
-          <Route path="/">
-            <Header />
-            <Home />
-            <Footer />
-          </Route>
+            </Elements>}
+          />
+          <Route path="/product" element={<ProductLists productLists={allProductList} />} />
+          <Route path="/" element={<Home />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

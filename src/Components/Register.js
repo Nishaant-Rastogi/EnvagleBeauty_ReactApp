@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../Styles/Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../States/firebase";
-
+import FooterLogin from "./FooterLogin";
 function Register() {
   //programatically chnage URL
   const history = useNavigate();
@@ -105,6 +105,7 @@ function Register() {
           </small>
         </div>
       </div>
+      <FooterLogin />
     </div>
   );
 }
