@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { response } = require("express");
 const stripe = require("stripe")(
-  "sk_test_51KOQduSGmnjRVw8ze9KtwZuwjbfNcmDVtleKW7hGYOUVwpN459JYC4NHknAjvmZfeI9j4J3pD2tSKkVgkq6kM0cb00fliXpeWd"
+  'sk_test_51KOQduSGmnjRVw8ze9KtwZuwjbfNcmDVtleKW7hGYOUVwpN459JYC4NHknAjvmZfeI9j4J3pD2tSKkVgkq6kM0cb00fliXpeWd'
 );
 
 //API
@@ -38,4 +38,4 @@ app.post("/payment/create", async (request, response) => {
 exports.api = functions.https.onRequest(app);
 
 //Example endpoint
-// http://localhost:5001/clone-fcc92/us-central1/api
+//firebase emulators:start

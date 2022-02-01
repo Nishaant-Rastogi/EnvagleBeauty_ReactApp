@@ -8,6 +8,7 @@ import { getBasketTotal } from "../States/Reducer";
 import CurrencyFormat from "react-currency-format";
 import Axios from "../States/axios";
 import { db } from "../States/firebase";
+import { collection, doc, setDoc } from "firebase/firestore"; 
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -21,6 +22,7 @@ function Payment() {
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
+
 
   useEffect(() => {
     //Generate the special stripe secret which allows us to charge a customer
@@ -50,17 +52,21 @@ function Payment() {
       })
       .then(({ paymentIntent }) => {
         // paymentIntent = payment confirmation
-
-        db.collection("users")
-          .doc(user?.uid)
-          .collection("orders")
-          .doc(paymentIntent.id) //create document with paymnetIntent id
-          .set({
-            //add this information in
-            basket: basket,
+        const dbref = collection(db,"users");
+        setDoc(dbref, user.uid, { basket: basket,
             amount: paymentIntent.amount,
-            created: paymentIntent.created,
-          });
+            created: paymentIntent.created,});
+
+        // db.collection("users")
+        //   .doc(user?.uid)
+        //   .collection("orders")
+        //   .doc(paymentIntent.id) //create document with paymnetIntent id
+        //   .set({
+        //     //add this information in
+        //     basket: basket,
+        //     amount: paymentIntent.amount,
+        //     created: paymentIntent.created,
+        //   });
 
         setSucceeded(true);
         setError(null);
