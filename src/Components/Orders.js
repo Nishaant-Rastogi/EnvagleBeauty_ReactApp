@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../States/firebase";
+import { collection, onSnapshot, doc, query, orderBy } from "firebase/firestore";
 import "../Styles/Orders.css";
 import { useStateValue } from "../States/StateProvider";
 import Order from "./Order";
@@ -10,20 +11,33 @@ function Orders() {
 
   useEffect(() => {
     if (user) {
-      db.collection("users") //accessing users DB
-        .doc(user?.uid) //Getting specific user logged in
-        .collection("orders") //Accessing that users order
-        .orderBy("created", "desc") // orders in db orders arrange desc
-        .onSnapshot((snapshot) => {
-          //Realtime snapshot of Database
-          setOrders(
-            //Going to all orders
-            snapshot.docs.map((doc) => ({
-              id: doc.id, // set order id
-              data: doc.data(), //Set all order data
-            }))
-          );
-        });
+      // db.collection("users") //accessing users DB
+      //   .doc(user?.uid) //Getting specific user logged in
+      //   .collection("orders") //Accessing that users order
+      //   .orderBy("created", "desc") // orders in db orders arrange desc
+      //   .onSnapshot((snapshot) => {
+      //     //Realtime snapshot of Database
+      //     setOrders(
+      //       //Going to all orders
+      //       snapshot.docs.map((doc) => ({
+      //         id: doc.id, // set order id
+      //         data: doc.data(), //Set all order data
+      //       }))
+      //     );
+      //   });
+      const paymentRef = doc(collection(db, "users"), user?.uid);
+      const paymentRef2 = collection(paymentRef, "orders");
+      const q = query(paymentRef2, orderBy("created", "desc"));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        setOrders(
+          //Going to all orders
+          snapshot.docs.map((doc) => ({
+            id: doc.id, // set order id
+            data: doc.data(), //Set all order data
+          }))
+        );
+
+      });
     } else {
       setOrders([]);
     }
