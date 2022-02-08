@@ -960,3 +960,4 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2022-02-02T18:45:35.969Z] [worker-us-central1-api-787792b6-fe50-4ca9-8418-0ab9d4d049ee]: exited {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-787792b6-fe50-4ca9-8418-0ab9d4d049ee]: exited"}}
 [debug] [2022-02-02T18:45:35.969Z] [worker-us-central1-api-787792b6-fe50-4ca9-8418-0ab9d4d049ee]: FINISHED {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-api-787792b6-fe50-4ca9-8418-0ab9d4d049ee]: FINISHED"}}
 [debug] [2022-02-02T18:45:35.970Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2022-02-02T18:53:37.953Z] [worker-~diagnostic~-efdcbbf4-0781-4090-99cc-d5007dc8e239]: exited {"metadata":{"emulator":{"name":"functions"},"message":"[worker-~diagnostic~-efdcbbf4-0781-4090-99cc-d5007dc8e239]: exited"}}

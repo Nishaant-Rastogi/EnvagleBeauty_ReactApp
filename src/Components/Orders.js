@@ -44,6 +44,7 @@ function Orders() {
   }, [user]);
   return (
     <div className="orders">
+      <img src="https://mamaearthp.imgix.net/wysiwyg/desktop_home_img.jpg?auto=format" alt="/" height="200" width="1400" />
       <h1>Your Orders</h1>
 
       <div className="orders__order">
@@ -51,7 +52,7 @@ function Orders() {
           <Order order={order} />
         ))}
       </div>
-    </div>
+    </div >
   );
 }
 

@@ -4,7 +4,11 @@ import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../States/StateProvider";
 import { getBasketTotal } from "../States/Reducer";
 import { useNavigate } from "react-router-dom";
+import {
 
+  Button,
+
+} from "@material-ui/core";
 function Subtotal() {
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -29,9 +33,9 @@ function Subtotal() {
         prefix={"$"}
       />
       {/* push the user to another page use history */}
-      <button onClick={(e) => navigate('/payment')}>
+      <Button variant="contained" onClick={(e) => navigate('/payment')}>
         Proceed to Checkout
-      </button>
+      </Button>
     </div>
   );
 }
