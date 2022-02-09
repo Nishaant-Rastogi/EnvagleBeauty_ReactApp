@@ -6,7 +6,7 @@ function FooterLogin() {
     <div className="footerLogin">
       <hr />
       <p className="centered">
-        Conditions of Use Privacy Notice Help © 2020 Nitish
+        Conditions of Use Privacy Notice Help © 2022 Kushagra and Nishaant
       </p>
     </div>
   );

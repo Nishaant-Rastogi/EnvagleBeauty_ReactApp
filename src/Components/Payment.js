@@ -7,8 +7,8 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { getBasketTotal } from "../States/Reducer";
 import CurrencyFormat from "react-currency-format";
 import Axios from "../States/axios";
+import { collection, setDoc, doc } from "firebase/firestore";
 import { db } from "../States/firebase";
-import { collection, doc, setDoc } from "firebase/firestore"; 
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -21,8 +21,7 @@ function Payment() {
   const [processing, setProcessing] = useState("");
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState(true);
-
+  const [clientSecret, setClientSecret] = useState("true");
 
   useEffect(() => {
     //Generate the special stripe secret which allows us to charge a customer
@@ -51,11 +50,8 @@ function Payment() {
         payment_method: { card: elements.getElement(CardElement) },
       })
       .then(({ paymentIntent }) => {
+        console.log(paymentIntent);
         // paymentIntent = payment confirmation
-        const dbref = collection(db,"users");
-        setDoc(dbref, user.uid, { basket: basket,
-            amount: paymentIntent.amount,
-            created: paymentIntent.created,});
 
         // db.collection("users")
         //   .doc(user?.uid)
@@ -67,7 +63,12 @@ function Payment() {
         //     amount: paymentIntent.amount,
         //     created: paymentIntent.created,
         //   });
-
+        const paymentRef = doc(collection(db, "users"), user?.uid, "orders", paymentIntent.id);
+        setDoc(paymentRef, {
+          basket: basket,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created
+        });
         setSucceeded(true);
         setError(null);
         setProcessing(false);
@@ -76,7 +77,7 @@ function Payment() {
           type: "EMPTY_BASKET",
         });
 
-        history("/orders",{replace: true});
+        history("/orders", { replace: true });
       });
   };
 
@@ -138,7 +139,7 @@ function Payment() {
                   value={getBasketTotal(basket)}
                   displayType={"text"}
                   thousandSeparator={true}
-                  prefix={"$"}
+                  prefix={"₹"}
                 />
                 <button disabled={processing || disabled || succeeded}>
                   <span>{processing ? <p>Processing</p> : "Buy Now"}</span>

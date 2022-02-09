@@ -35,20 +35,13 @@ function ProductList({
       <div className="product_info">
         <p>{title}</p>
         <p className="product__price">
-          <small>$</small>
+          <small>₹</small>
           <strong>{price}</strong>
         </p>
-        <div className="product__rating">
-          {Array(rating)
-            .fill()
-            .map((_, i) => (
-              <p>⭐</p>
-            ))}
-        </div>
+
       </div>
       <img src={image} alt="" />
-      <button onClick={addToBasket}>Add to Basket</button>
-      {/* <button onClick={addToBasket}>Add to Basket</button> */}
+      <Button variant="contained" onClick={addToBasket}>Add to Basket</Button>
     </div>
   );
 }

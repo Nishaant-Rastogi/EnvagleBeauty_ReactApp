@@ -1,6 +1,15 @@
 import React from "react";
 import "../Styles/Product.css";
 import { useStateValue } from "../States/StateProvider";
+import {
+  Card,
+  CardActions,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+} from "@material-ui/core";
 
 function Product({ productList, id, title, image, price, rating }) {
   const [{ basket }, dispatch] = useStateValue();
@@ -24,19 +33,12 @@ function Product({ productList, id, title, image, price, rating }) {
       <div className="product_info">
         <p>{title}</p>
         <p className="product__price">
-          <small>$</small>
+          <small>₹</small>
           <strong>{price}</strong>
         </p>
-        <div className="product__rating">
-          {Array(rating)
-            .fill()
-            .map((_, i) => (
-              <p key={i}>⭐</p>
-            ))}
-        </div>
       </div>
       <img src={image} alt="" />
-      <button onClick={addToBasket}>Add to Basket</button>
+      <Button className="addToBasket" onClick={addToBasket}>Add to Basket</Button>
 
       <div></div>
     </div>

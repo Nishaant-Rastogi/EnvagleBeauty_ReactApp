@@ -4,7 +4,7 @@ import '../Styles/Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../States/firebase";
 import FooterLogin from "./FooterLogin";
-import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,20 +14,20 @@ function Login() {
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .then((auth) => {
-    history("/");
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .then((auth) => {
+        history("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
 
-    signInWithEmailAndPassword(auth,email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         history("/");
       })
@@ -36,7 +36,7 @@ function Login() {
 
   const register = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth,email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         //It successfully created a new user with email and password
         console.log(auth);
@@ -85,7 +85,7 @@ function Login() {
         </form>
 
         <p>
-          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use &
+          By signing-in you agree to the Envagle Beauty Conditions of Use &
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
@@ -94,7 +94,7 @@ function Login() {
             type="submit"
             className="login__registerButton"
           >
-            Create your Amazon Account
+            Create your Envagle Beauty Account
           </button>
         </Link>
         <FooterLogin />
