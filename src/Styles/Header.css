@@ -55,10 +55,23 @@
 }
 
 .header__basketCount {
-  text-decoration: none;
-  margin-left: 10px;
+  background-color: red;
   margin-right: 10px;
-  color: red;
+  border-radius: 15px;
+  height: 15px;
+  width: 15px;
+  top: -10px;
+  display:flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  color: white;
+}
+.LengthVal{
+  font-size: small;
+  /* position: relative;
+  top: -2px;
+  right: -2px; */
 }
 
 .header__nav {
